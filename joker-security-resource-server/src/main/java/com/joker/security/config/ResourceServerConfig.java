@@ -1,39 +1,43 @@
 package com.joker.security.config;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
+import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
+import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.token.RemoteTokenServices;
+import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 
 @Configuration
-@EnableWebSecurity
-@EnableGlobalMethodSecurity
-public class ResourceServerConfig extends WebSecurityConfigurerAdapter {
+@EnableResourceServer
+public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
 	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		// TODO Auto-generated method stub
-		super.configure(auth);
+	public void configure(HttpSecurity http) throws Exception {
+		http.authorizeRequests().anyRequest().authenticated();
 	}
 
 	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		// TODO Auto-generated method stub
-		super.configure(http);
+	public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
+		resources.tokenServices(tokenServices());
 	}
 
-	@Override
-	public void configure(WebSecurity web) throws Exception {
-		// TODO Auto-generated method stub
-		super.configure(web);
+	@Bean
+	public RemoteTokenServices tokenServices() {
+		RemoteTokenServices remoteTokenServices = new RemoteTokenServices();
+		remoteTokenServices.setAccessTokenConverter(accessTokenConverter());
+		remoteTokenServices.setClientId("joker");
+		remoteTokenServices.setClientSecret("joker-secret");
+		remoteTokenServices.setCheckTokenEndpointUrl("http://localhost:8181/joker-security-authorization-server/oauth/check_token/");
+		return remoteTokenServices;
 	}
 
-	@Override
-	public AuthenticationManager authenticationManagerBean() throws Exception {
-		return super.authenticationManagerBean();
+	@Bean
+	public JwtAccessTokenConverter accessTokenConverter() {
+		JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+		converter.setSigningKey("joker");
+		return converter;
 	}
+
 }

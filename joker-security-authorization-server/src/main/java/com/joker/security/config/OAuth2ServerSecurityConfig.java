@@ -15,7 +15,7 @@ public class OAuth2ServerSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.inMemoryAuthentication().withUser("joker").password("joker").roles("USER");
+		auth.inMemoryAuthentication().withUser("joker").password("joker").roles("ROLE_USER");
 	}
 
 	@Override

@@ -19,7 +19,6 @@
 	</parent>
 
 	<modules>
-		<module>joker-security-api</module>
 		<module>joker-security-authorization-server</module>
 		<module>joker-security-resource-server</module>
 	</modules>
