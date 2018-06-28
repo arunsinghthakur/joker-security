@@ -50,7 +50,7 @@ public class OAuth2ServerConfig extends AuthorizationServerConfigurerAdapter {
 	@Bean
 	public JwtAccessTokenConverter accessTokenConverter() {
 		JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-		converter.setSigningKey("123");
+		converter.setSigningKey("joker");
 		return converter;
 	}
 
