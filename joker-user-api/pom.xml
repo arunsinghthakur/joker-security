@@ -3,11 +3,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.joker.security</groupId>
-	<artifactId>joker-security-resource-server</artifactId>
-	<packaging>jar</packaging>
+	<artifactId>joker-user-api</artifactId>
+	<packaging>war</packaging>
 
-	<name>joker-security-resource-server</name>
+	<name>joker-user-api</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
@@ -16,8 +15,8 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
+	
 	<dependencies>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -27,23 +26,39 @@
 			<artifactId>spring-boot-devtools</artifactId>
 			<optional>true</optional>
 		</dependency>
-
 		<dependency>
-			<groupId>org.springframework.security.oauth</groupId>
-			<artifactId>spring-security-oauth2</artifactId>
-			<version>${oauth.version}</version>
-		</dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-eureka</artifactId>
+            <version>1.4.5.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-feign</artifactId>
+            <version>1.4.5.RELEASE</version>
+        </dependency>
 
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-jwt</artifactId>
-			<version>${jwt.version}</version>
-		</dependency>
-
+       <!--  <dependency>
+            <groupId>com.joker.security</groupId>
+            <artifactId>joker-security-resource-server</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency> -->
+        
 	</dependencies>
 
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-starter-parent</artifactId>
+				<version>Finchley.RELEASE</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
 	<build>
-		<finalName>joker-resource-server</finalName>
+		<finalName>joker-user-api</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
