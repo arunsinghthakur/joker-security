@@ -3,20 +3,17 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.joker.cloud</groupId>
-	<artifactId>joker-cloud-eureka</artifactId>
+	<groupId>com.joker.security</groupId>
+	<artifactId>joker-security</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
-	<name>joker-cloud-eureka</name>
+	<name>joker-security</name>
 	<description>Demo project for Spring Boot</description>
 
 	<modules>
-		<module>joker-cloud-eureka-server</module>
 		<module>joker-security-authorization-server</module>
 		<module>joker-security-resource-server</module>
-		<module>joker-user-api</module>
-		<module>joker-account-api</module>
 	</modules>
 
 	<parent>

@@ -11,8 +11,8 @@
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
-		<groupId>com.joker.cloud</groupId>
-		<artifactId>joker-cloud-eureka</artifactId>
+		<groupId>com.joker.security</groupId>
+		<artifactId>joker-security</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
